@@ -1,9 +1,12 @@
 const express = require('express'); const 
 bodyParser = require('body-parser'); const { exec 
 } = require('child_process');
-const app = express(); const PORT = 3000;
+const path = require('path'); const app = 
+express(); const PORT = 3000;
 // Middleware
 app.use(bodyParser.json());
+// Static file serving
+app.use(express.static(path.join(__dirname)));
 // Endpoint for GitHub Webhook
 app.post('/webhook', (req, res) => { 
     console.log('Webhook received:', req.body);
